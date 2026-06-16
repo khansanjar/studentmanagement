@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Internal Server Error - Student Management System</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    
+</head>
+
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+    
+    <div class="text-center max-w-md">
+        <h1 class="text-red-600 font-extrabold tracking-tight leading-none mb-2" style="font-size: 8rem;">
+            500
+        </h1>
+        
+        <p class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+            Internal Server Error
+        </p>
+        
+        <p class="text-base sm:text-lg text-gray-500 font-normal mb-8">
+            Something went wrong on our end. Please try again later.
+        </p>
+        
+        <a th:href="@{/dashboard}" href="dashboard.html" 
+           class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-base px-6 py-3 transition duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            <i class="bi bi-house-door mr-2"></i> Back to Home
+        </a>
+    </div>
+
+</body>
+
+</html>

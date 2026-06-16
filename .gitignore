@@ -1,0 +1,51 @@
+# ==========================================
+# 🔐 DATABASE & CREDENTIALS SECURITY (CRITICAL)
+# ==========================================
+# Is se aapka actual database link aur password safe rahega
+src/main/resources/application.properties
+src/main/resources/application.yml
+
+# ==========================================
+# 🛠️ BUILD TOOLS (Maven & Gradle)
+# ==========================================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+build/
+.gradle/
+*.gradle.gnu
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.nextSnapshot
+pom.xml.versionsBackup
+release.properties
+bundle/
+
+# ==========================================
+# 💻 IDE SETTINGS (IntelliJ, Eclipse, VS Code)
+# ==========================================
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### Eclipse ###
+.metadata/
+bin/
+tmp/
+.classpath
+.project
+.settings/
+*.launch
+
+### VS Code ###
+.vscode/
+
+# ==========================================
+# 🪵 LOGS & SYSTEM FILES
+# ==========================================
+*.log
+logs/
+.DS_Store
+Thumbs.db

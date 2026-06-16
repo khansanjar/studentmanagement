@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Management System</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body class="bg-slate-50 font-sans antialiased">
+
+    <div class="flex min-h-screen overflow-hidden" id="wrapper">
+        
+        <div class="w-64 bg-slate-900 text-white flex flex-col transition-all duration-300 ease-in-out shrink-0" id="sidebar-wrapper">
+            <div class="p-5 text-lg font-bold border-b border-slate-800 flex items-center tracking-tight">
+                <i class="bi bi-mortarboard-fill me-2 text-blue-500"></i> SMS Admin
+            </div>
+            <div class="flex flex-col flex-grow p-3 space-y-1">
+                <a href="dashboard.html" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl bg-blue-600 text-white font-medium transition duration-150">
+                    <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
+                </a>
+                <a 	th:href="@{course/list}" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition duration-150">
+                    <i class="bi bi-book"></i> <span>Courses</span>
+                </a>
+                <a href="students.html" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition duration-150">
+                    <i class="bi bi-people"></i> <span>Students</span>
+                </a>
+                <a href="enroll-course.html" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition duration-150">
+                    <i class="bi bi-check2-square"></i> <span>Enroll to Course</span>
+                </a>
+                <a href="login.html" class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-400 hover:bg-red-950/40 hover:text-red-400 transition duration-150 mt-auto border-t border-slate-800 pt-4">
+                    <i class="bi bi-box-arrow-right"></i> <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-1 flex flex-col min-w-0" id="page-content-wrapper">
+            
+            <nav class="bg-white border-b border-slate-200 px-6 py-3 flex items-center justify-between shadow-sm">
+                <div class="flex items-center">
+                    <button class="text-slate-600 p-2 rounded-xl hover:bg-slate-100 border border-slate-200 transition duration-150 focus:outline-none" id="sidebarToggle">
+                        <i class="bi bi-list text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <div class="relative group">
+                        <a class="flex items-center space-x-2 text-slate-700 hover:text-slate-900 cursor-pointer py-1" id="navbarDropdown">
+                            <i class="bi bi-person-circle text-xl text-slate-400"></i> 
+                            <span class="font-semibold text-sm">Admin User</span>
+                        </a>
+                        <div class="absolute right-0 w-48 bg-white border border-slate-200 rounded-xl shadow-lg py-1 hidden group-hover:block z-50 transition duration-150">
+                            <a class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50" href="#">Profile</a>
+                            <a class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50" href="#">Settings</a>
+                            <div class="border-t border-slate-100 my-1"></div>
+                            <a class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50" href="login.html">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="flex-grow p-6 overflow-y-auto">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 tracking-tight">Dashboard</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-blue-600 text-white rounded-2xl p-5 shadow-sm shadow-blue-600/10 flex items-center justify-between border border-blue-500">
+                        <div>
+                            <h6 class="text-xs font-semibold uppercase tracking-wider opacity-75">Total Students</h6>
+                            <h2 class="text-3xl font-bold mt-2">1,250</h2>
+                        </div>
+                        <i class="bi bi-people text-4xl opacity-40"></i>
+                    </div>
+                    <div class="bg-emerald-600 text-white rounded-2xl p-5 shadow-sm shadow-emerald-600/10 flex items-center justify-between border border-emerald-500">
+                        <div>
+                            <h6 class="text-xs font-semibold uppercase tracking-wider opacity-75">Total Courses</h6>
+                            <h2 class="text-3xl font-bold mt-2">42</h2>
+                        </div>
+                        <i class="bi bi-book text-4xl opacity-40"></i>
+                    </div>
+                    <div class="bg-cyan-500 text-slate-900 rounded-2xl p-5 shadow-sm shadow-cyan-500/10 flex items-center justify-between border border-cyan-400">
+                        <div>
+                            <h6 class="text-xs font-semibold uppercase tracking-wider text-slate-800 opacity-75">Top Performing Courses</h6>
+                            <h2 class="text-3xl font-bold mt-2">CS101</h2>
+                        </div>
+                        <i class="bi bi-trophy text-4xl text-slate-800 opacity-40"></i>
+                    </div>
+                    <div class="bg-slate-600 text-white rounded-2xl p-5 shadow-sm shadow-slate-600/10 flex items-center justify-between border border-slate-500">
+                        <div>
+                            <h6 class="text-xs font-semibold uppercase tracking-wider opacity-75">Students Enrolled This Month</h6>
+                            <h2 class="text-3xl font-bold mt-2">37</h2>
+                        </div>
+                        <i class="bi bi-person-check text-4xl opacity-40"></i>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden mb-6">
+                    <div class="bg-slate-50 border-b border-slate-200 px-5 py-4 font-semibold text-sm text-slate-700 flex items-center">
+                        <i class="bi bi-table mr-2 text-slate-400"></i>
+                        Recent Student Registrations
+                    </div>
+                    <div class="p-0">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50/50 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-400">
+                                        <th class="px-6 py-3.5">ID</th>
+                                        <th class="px-6 py-3.5">Name</th>
+                                        <th class="px-6 py-3.5">Course</th>
+                                        <th class="px-6 py-3.5">Enroll Date</th>
+                                        <th class="px-6 py-3.5">Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 text-sm text-slate-600">
+                                    <tr class="hover:bg-slate-50/80 transition duration-150">
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="ID">#STU001</td>
+                                        <td class="px-6 py-4 font-semibold text-slate-900 whitespace-nowrap" data-label="Name">John Doe</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Course">Computer Science</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Enroll Date">2023-10-05</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Duration">6 Months</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/80 transition duration-150">
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="ID">#STU002</td>
+                                        <td class="px-6 py-4 font-semibold text-slate-900 whitespace-nowrap" data-label="Name">Jane Smith</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Course">Mathematics</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Enroll Date">2023-10-02</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Duration">5 Months</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50/80 transition duration-150">
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="ID">#STU003</td>
+                                        <td class="px-6 py-4 font-semibold text-slate-900 whitespace-nowrap" data-label="Name">Mike Johnson</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Course">Physics</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Enroll Date">2023-10-04</td>
+                                        <td class="px-6 py-4 whitespace-nowrap" data-label="Duration">6 Months</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="py-4 bg-white border-t border-slate-200 text-xs text-slate-400 mt-auto shadow-inner">
+                <div class="px-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+                    <div>Copyright &copy; Student Management System 2023</div>
+                    <div class="space-x-4">
+                        <a href="#" class="hover:text-slate-700 transition">Privacy Policy</a>
+                        <span>&middot;</span>
+                        <a href="#" class="hover:text-slate-700 transition">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+            const sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    const sidebar = document.getElementById('sidebar-wrapper');
+                    // Toggling negative margin is the standard Tailwind approach for sidebars
+                    sidebar.classList.toggle('-ml-64'); 
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
