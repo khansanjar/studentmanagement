@@ -156,45 +156,42 @@
     </div>
 </div>
 
-					<div
-						class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
-						<div class="text-xs text-slate-500 font-medium">
-							Showing Page <span class="font-bold text-slate-700">3</span> of 5
-						</div>
-						<nav aria-label="Course pagination">
-							<ul
-								class="inline-flex items-center space-x-1 text-sm font-semibold">
-								<li><a th:href="@{/courses(page=1,size=10)}" href="#"
-									class="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-white transition">Previous</a>
-								</li>
-								<li><a th:href="@{/courses(page=0,size=10)}" href="#"
-									class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-white transition">1</a>
-								</li>
-								<li><a th:href="@{/courses(page=1,size=10)}" href="#"
-									class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-white transition">2</a>
-								</li>
-								<li><a th:href="@{/courses(page=2,size=10)}" href="#"
-									class="w-8 h-8 flex items-center justify-center rounded-lg bg-blue-600 text-white shadow-sm transition">3</a>
-								</li>
-								<li><a th:href="@{/courses(page=3,size=10)}" href="#"
-									class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-white transition">4</a>
-								</li>
-								<li><a th:href="@{/courses(page=4,size=10)}" href="#"
-									class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-600 hover:bg-white transition">5</a>
-								</li>
-								<li><a th:href="@{/courses(page=3,size=10)}" href="#"
-									class="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-white transition">Next</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<script
+				<div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between" th:if="${cources.totalPages > 0}">
+    
+    <div class="text-xs text-slate-500 font-medium">
+        Showing Page <span class="font-bold text-slate-700" th:text="${cources.number + 1}">1</span> 
+        of <span class="font-bold text-slate-700" th:text="${cources.totalPages}">5</span>
+    </div>
+    
+    <nav aria-label="Course pagination">
+        <ul class="inline-flex items-center space-x-1 text-sm font-semibold">
+            
+            <li th:classappend="${!cources.hasPrevious()} ? 'opacity-50 pointer-events-none' : ''">
+                <a th:href="@{/course/list(page=${cources.number - 1}, size=${cources.size})}"
+                   class="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-white transition">
+                   Previous	
+                </a>
+            </li>
+            
+            <li th:each="pageIdx : ${#numbers.sequence(0, cources.totalPages - 1)}">
+                <a th:href="@{/course/list(page=${pageIdx}, size=${cources.size})}"
+                   th:text="${pageIdx + 1}"
+                   th:classappend="${pageIdx == cources.number} ? 'bg-blue-600 text-white shadow-sm' : 'border border-slate-200 text-slate-600 hover:bg-white'"
+                   class="w-8 h-8 flex items-center justify-center rounded-lg transition">
+                   1
+                </a>
+            </li>
+            
+            <li th:classappend="${!cources.hasNext()} ? 'opacity-50 pointer-events-none' : ''">
+                <a th:href="@{/course/list(page=${cources.number + 1}, size=${cources.size})}"
+                   class="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-500 hover:bg-white transition">
+                   Next
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 	<script>
