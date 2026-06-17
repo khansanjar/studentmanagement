@@ -9,6 +9,8 @@ import com.StudentManagement.Student.Model.Courses; // Apne Courses model ka sah
 public interface CourseRepo extends JpaRepository<Courses, Integer> {
     
 	boolean existsBycoursecodeIgnoreCase(String coursecode);
-	
+
+	boolean existsBycoursecodeIgnoreCaseAndIdNot(String coursecode,int id);
+
 	Page<Courses>	findByActiveTrue(PageRequest pageRequest);
 }

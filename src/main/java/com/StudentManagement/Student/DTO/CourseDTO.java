@@ -30,6 +30,17 @@ public class CourseDTO {
 	@Size(max=500,message="max 500 charcater is allowed")
 
 	private String descriptation;
+	
+	private boolean active;
+
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
 	public int getId() {
 		return id;

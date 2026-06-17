@@ -55,6 +55,57 @@ public class CoursesServiceimpl implements CoursesServices{
 	.map(course->mapper.map(course,CourseDTO.class));
 		
 	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public CourseDTO getCourseById(int id) {
+
+	Courses course= 	courserepo.findById(id).orElseThrow(()-> new RuntimeException 	("Course Id Not Found"));
+		
+		return  mapper.map(course,CourseDTO.class);
+	}
+
+	@Override
+	public CourseDTO updateCourse(int id, CourseDTO coursedto) {
+		Courses course= 	courserepo.findById(id).orElseThrow(()-> new RuntimeException 	("Course Id Not Found"));
+		
+	mapper.map(coursedto,course);
+	
+		
+	Courses update=courserepo.saveAndFlush(course);
+	
+		return  mapper.map(course,CourseDTO.class);
+
+	}
+
+	@Override
+	public boolean existsBycoursecodeIgnoreCaseAndIdNot(String code, int id) {
+		
+		log.info("Code from update page:{} , id{} :",code ,id);
+
+		
+		return courserepo.existsBycoursecodeIgnoreCaseAndIdNot(code, id);
+		
+		
+	}
+	
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
