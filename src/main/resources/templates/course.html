@@ -29,7 +29,7 @@
 				</a> <a th:href="@{/course/list}"
 					class="flex items-center space-x-3 px-4 py-2.5 rounded-xl bg-blue-600 text-white font-medium transition duration-150">
 					<i class="bi bi-book"></i> <span>Courses</span>
-				</a> <a th:href="@{/students}"
+				</a> <a th:href="@{/students/list}"
 					class="flex items-center space-x-3 px-4 py-2.5 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition duration-150">
 					<i class="bi bi-people"></i> <span>Students</span>
 				</a> <a th:href="@{/enroll}"
@@ -124,18 +124,18 @@
 										class="hover:bg-slate-50/80 transition duration-150">
 										<td
 											class="px-6 py-4 whitespace-nowrap font-medium text-slate-500"
-											th:text="${course.id}">101</td>
+											th:text="${course.id}"></td>
 										<td
 											class="px-6 py-4 font-semibold text-slate-900 whitespace-nowrap"
-											th:text="${course.coursename}">Introduction to Computer
-											Science</td>
+											th:text="${course.coursename}">
+											</td>
 										<td class="px-6 py-4 whitespace-nowrap"
-											th:text="${course.coursecode}">ICS</td>
+											th:text="${course.coursecode}"></td>
 										<td
 											class="px-6 py-4 whitespace-nowrap font-medium text-emerald-600"
-											th:text="'Rs. ' + ${course.fee}">Rs.3999</td>
+											th:text="'Rs. ' + ${course.fee}"></td>
 										<td class="px-6 py-4 whitespace-nowrap"
-											th:text="${course.duration}">4 Months</td>
+											th:text="${course.duration}"></td>
 										<td class="px-6 py-4 whitespace-nowrap text-center space-x-2">
 											<a th:href="@{/course/{id}(id=${course.id})}"
 											class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 hover:bg-cyan-100 transition"
