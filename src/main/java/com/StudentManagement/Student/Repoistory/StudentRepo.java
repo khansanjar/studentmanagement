@@ -12,5 +12,7 @@ public interface StudentRepo extends JpaRepository<StudentClass, Integer>{
 
 	boolean existsByEmailIgnoreCase(String email);
 	Page<StudentClass>findByActiveTrue(Pageable pageable);
+	boolean existsByEmailIgnoreCaseAndIdNot(String email,int id);
+
 
 }

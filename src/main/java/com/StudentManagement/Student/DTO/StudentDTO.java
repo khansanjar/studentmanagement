@@ -28,7 +28,7 @@ public class StudentDTO {
 	@Size(max=500,message="max character is alloed 500")
 	private String address;
 		
-	boolean active;	
+	boolean active=true;	
 	
 	
 

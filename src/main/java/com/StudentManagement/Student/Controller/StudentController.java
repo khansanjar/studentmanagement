@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,6 +83,50 @@ public String createstudent(@Valid @ModelAttribute("studentDTO") StudentDTO stud
 	return "redirect:/student/list";
 	
 }
+@GetMapping("/{id}")
+public String getStudentById(@PathVariable int id,Model model) {
 
-
+	StudentDTO student=studentservice.getStudentById(id);
+	model.addAttribute("student", student);
+	
+	return "view-student";
+	
 }
+
+@GetMapping("/{id}/edit")
+public String editstudent(@PathVariable int id,Model model) {
+
+	StudentDTO student=studentservice.getStudentById(id);
+	model.addAttribute("studentDTO", student);
+	
+	return "edit-student";
+	
+}
+@PostMapping("/{id}/update")
+public String updateStudent(@PathVariable int id,
+		@Valid @ModelAttribute("courseDTO") StudentDTO studentDTO, BindingResult result,
+		Model model, RedirectAttributes redirect) {
+	
+	log.info("Post/save  -update student request");
+	if(result.hasErrors()) {
+		return "edit-student";
+	}
+	if(studentservice.existsByEmailIgnoreCaseAndIdNot(studentDTO.getEmail(), id)) {
+		log.error("Post/update -page return Email must must be unique");
+		
+		result.rejectValue("email", "error.studentDTO", "email must be Unique");
+
+		return "edit-student";
+	}
+	studentservice.updateStudnet(id,studentDTO);
+	redirect.addAttribute("message", "Student   Is updated Successfuly");
+	
+	return "redirect:/student/list";
+	
+}
+}
+
+
+
+
+

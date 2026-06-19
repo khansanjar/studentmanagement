@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.StudentManagement.Student.Controller.CoursesController;
 import com.StudentManagement.Student.DTO.CourseDTO;
 import com.StudentManagement.Student.Model.Courses;
 import com.StudentManagement.Student.Repoistory.CourseRepo;

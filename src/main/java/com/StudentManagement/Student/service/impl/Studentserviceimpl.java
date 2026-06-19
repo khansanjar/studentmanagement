@@ -6,11 +6,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.StudentManagement.Student.DTO.CourseDTO;
 import com.StudentManagement.Student.DTO.StudentDTO;
+import com.StudentManagement.Student.Model.Courses;
 import com.StudentManagement.Student.Model.StudentClass;
 import com.StudentManagement.Student.Repoistory.StudentRepo;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,4 +59,57 @@ public class Studentserviceimpl implements Studentservice {
 				.map(studentclass -> mapper.map(studentclass, StudentDTO.class));
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public StudentDTO getStudentById(int id) {
+		
+		StudentClass student=studentRepo.findById(id).orElseThrow(()->new RuntimeException ("N student found"));
+		
+		return mapper.map(student,StudentDTO.class);
+	}
+
+	@Override
+	public boolean existsByEmailIgnoreCaseAndIdNot(String email, int id) {
+		
+		log.info("email form student update");
+		
+		return studentRepo.existsByEmailIgnoreCaseAndIdNot(email, id);
+	}
+
+	@Override
+	public StudentDTO updateStudnet(int id, StudentDTO studentDTO) {
+		StudentClass student= 	studentRepo.findById(id).orElseThrow(()-> new RuntimeException 	("Student Id Not Found"));
+		
+		mapper.map(studentDTO,student);
+		
+			
+	StudentClass	update=studentRepo.saveAndFlush(student);
+		
+			return  mapper.map(update,StudentDTO.class);	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

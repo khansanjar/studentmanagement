@@ -4,14 +4,17 @@ import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.P
 import org.springframework.data.domain.Page;
 
 import com.StudentManagement.Student.DTO.StudentDTO;
-import com.StudentManagement.Student.Model.StudentClass;
+
 
 public interface Studentservice {
 	
 	boolean existsByEmailIgnoreCase(String email);
 	StudentDTO createstudent(StudentDTO studentDTO);
 	Page <StudentDTO> getStudent (int page, int size);
-
+	StudentDTO getStudentById(int id);
+	boolean existsByEmailIgnoreCaseAndIdNot(String email,int id);
+	
+	StudentDTO updateStudnet (int id,StudentDTO studentDTO);
 
 }
  
