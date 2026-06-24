@@ -1,5 +1,8 @@
 package com.StudentManagement.Student.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,8 +90,15 @@ public class CoursesServiceimpl implements CoursesServices{
 		
 		
 	}
+
 	
 	
+	@Override
+	public List<CourseDTO> getAllCourses() {
+	    return courserepo.findByActiveTrue(Sort.by("coursename")).stream()
+	            .map(course -> mapper.map(course, CourseDTO.class))
+	            .collect(Collectors.toList());
+	}	
 
 }
 

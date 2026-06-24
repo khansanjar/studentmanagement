@@ -13,6 +13,10 @@ import com.StudentManagement.Student.Model.StudentClass;
 import com.StudentManagement.Student.Repoistory.StudentRepo;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +89,22 @@ public class Studentserviceimpl implements Studentservice {
 			
 	StudentClass	update=studentRepo.saveAndFlush(student);
 		
-			return  mapper.map(update,StudentDTO.class);	}
+			return  mapper.map(update,StudentDTO.class);	
+			
+	
+	
+	
+	}
+	
+	@Override
+	public List<StudentDTO> getAllStudent() {
+	    return studentRepo.findByActiveTrue().stream()
+	            .map(student -> mapper.map(student, StudentDTO.class))
+	            .collect(Collectors.toList());
+	}
+
+	
+
 }
 
 

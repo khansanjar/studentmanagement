@@ -1,12 +1,16 @@
 package com.StudentManagement.Student.Model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 
 @Entity
@@ -40,6 +44,8 @@ private String address;
 	public void onCreate() {
 		createdAt=LocalDateTime.now();
 	}
+	@OneToMany(mappedBy="student",cascade=CascadeType.ALL, orphanRemoval=true)
+	private Set<Enrollment> enrollments=new HashSet<>();
 
 	public int getId() {
 		return id;
@@ -103,6 +109,14 @@ private String address;
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public Set<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public void setEnrollments(Set<Enrollment> enrollments) {
+		this.enrollments = enrollments;
 	}
 	
 }
