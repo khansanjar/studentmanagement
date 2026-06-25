@@ -115,6 +115,28 @@ public class enrollmentserviceimpl implements Enrollmentservice{
 						return dto;
 					}).orElseThrow(()->new RuntimeException("studnet not found"));
 			
+		}
+
+		@Override
+		public List<EnrollmentSummery> getRecentEnrolledStudent() {
+			log.info("list of recently enrolled student " );
+
+			PageRequest pageRequest = PageRequest.of(0, 5, Sort.by(Direction.DESC, "id"));
+			return studentRepo.findEnrolledStudents(pageRequest)
+					.map(studentclass -> {
+						EnrollmentSummery dto=new EnrollmentSummery();
+						dto.setStudentId(studentclass.getId());
+						dto.setStudentname(studentclass.getFirstName()+" "+studentclass.getLastName());
+						dto.setEmail(studentclass.getEmail());
+						
+						dto.setCoursecount(studentclass.getEnrollments().size());
+						BigDecimal totalfee=studentclass.getEnrollments().stream()
+								.map(enrollment->enrollment.getCourse().getFee())
+								.filter(fee->fee!=null)
+								.reduce(BigDecimal.ZERO, BigDecimal::add);
+						dto.setTotalfee(totalfee);
+						return dto;
+					}).getContent();
 		}			
 	}
 

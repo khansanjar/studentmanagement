@@ -31,7 +31,7 @@ public class CourseDTO {
 
 	private String descriptation;
 	
-	private boolean active;
+	private boolean active=true;
 
 
 	public boolean isActive() {

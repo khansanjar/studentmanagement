@@ -1,5 +1,7 @@
 package com.StudentManagement.Student.service.impl;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import com.StudentManagement.Student.DTO.EnrollmentDTO;
@@ -17,5 +19,9 @@ public interface Enrollmentservice {
 	
 	
 	EnrollmentSummery findEnrollStudentCourseDetails(int studentid);
+	
+	
+	List<EnrollmentSummery> getRecentEnrolledStudent();
+
 
 	}
